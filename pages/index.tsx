@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getAllPosts } from "@/lib/posts-md";
+import { CalendarDays } from "lucide-react"; // nếu bạn dùng lucide-react
 
 interface PostSummary {
   slug: string;
@@ -22,21 +23,32 @@ export default function Home({ posts }: HomeProps) {
       title="CodeVerse - A Blog for Developers"
       description="Explore developer tips, guides, and insights with CodeVerse - built using Next.js and TypeScript."
     >
-      <h1 className="text-3xl font-bold mb-4">🪐 CodeVerse Blog</h1>
-      <ul className="space-y-6">
+      <h1 className="text-4xl font-extrabold mb-8 text-purple-700">
+        🚀 CodeVerse Blog
+      </h1>
+
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         {posts.map((post) => (
-          <li key={post.slug}>
-            <Link
-              href={`/blog/${post.slug}`}
-              className="text-xl text-blue-600 hover:underline font-semibold"
-            >
+          <Link
+            href={`/blog/${post.slug}`}
+            key={post.slug}
+            className="block bg-white dark:bg-zinc-900 shadow-md hover:shadow-xl transition rounded-xl p-5 border border-gray-100 hover:border-purple-400 dark:border-zinc-800"
+          >
+            <h2 className="text-xl font-semibold text-purple-700 dark:text-purple-300 mb-2">
               {post.title}
-            </Link>
-            <p className="text-sm text-gray-500">{post.date}</p>
-            <p className="text-gray-700">{post.description}</p>
-          </li>
+            </h2>
+
+            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <CalendarDays className="w-4 h-4 mr-2" />
+              <span>{post.date}</span>
+            </div>
+
+            <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3">
+              {post.description}
+            </p>
+          </Link>
         ))}
-      </ul>
+      </div>
     </Layout>
   );
 }

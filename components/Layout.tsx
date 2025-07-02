@@ -33,20 +33,28 @@ export default function Layout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <header className="w-full bg-white shadow mb-6">
-        <div className="max-w-2xl mx-auto p-4 flex justify-between items-center">
+      <header className="w-full shadow mb-6">
+        <div className="max-w-7xl mx-auto p-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-bold text-purple-700">
             CodeVerse
           </Link>
-          <nav>
+          <nav className="flex gap-4">
             <Link href="/" className="text-gray-600 hover:text-purple-700">
               Home
+            </Link>
+            <Link
+              href="/contact"
+              className="text-gray-600 hover:text-purple-700"
+            >
+              Contact
             </Link>
           </nav>
         </div>
       </header>
 
-      <main className="max-w-2xl mx-auto p-4">{children}</main>
+      <main className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        {children}
+      </main>
     </>
   );
 }
